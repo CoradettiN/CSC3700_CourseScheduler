@@ -1,4 +1,6 @@
 import CourseList from '../components/CourseList';
+import ProgressSummary from "../components/ProgressSummary.jsx";
+import FilterBars from '../components/FilterBars.jsx';
 
 function HomePage() {
     const courses = [
@@ -47,6 +49,8 @@ function HomePage() {
     return (
         <div className="container mt-4 mb-5">
             <h3 className="mb-3">CS Developer Track</h3>
+            <ProgressSummary/>
+            <FilterBars/>
             <CourseList courses={courses} />
         </div>
     );
