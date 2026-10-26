@@ -18,7 +18,7 @@ function AboutPage() {
                 </div>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Version</div>
-                    <div className="col-8">1.0.0</div>
+                    <div className="col-8">1.2.0</div>
                 </div>
             </div>
         </div>
