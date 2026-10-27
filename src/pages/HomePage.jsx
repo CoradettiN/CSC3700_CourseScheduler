@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import CourseList from '../components/CourseList';
 import ProgressSummary from "../components/ProgressSummary.jsx";
 import FilterBars from '../components/FilterBars.jsx';
@@ -46,12 +47,25 @@ function HomePage() {
         }
     ];
 
+    const [completedIds, setCompletedIds] = useState([]);
+
+    function handleToggle(courseId) {
+        if (completedIds.includes(courseId))
+            setCompletedIds(completedIds.filter(id => id !== courseId));
+        else
+            setCompletedIds([...completedIds, courseId]);
+    }
+
     return (
         <div className="container mt-4 mb-5">
             <h3 className="mb-3">CS Developer Track</h3>
             <ProgressSummary/>
             <FilterBars/>
-            <CourseList courses={courses} />
+            <CourseList
+                courses={courses}
+                completedIds={completedIds}
+                onToggle={handleToggle}
+            />
         </div>
     );
 }
