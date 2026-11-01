@@ -1,0 +1,13 @@
+body {
+    background-color: #f5f6f8;
+}
+
+.card-locked {
+    background-color: #f1f1f1;
+    color: #6c757d;
+    opacity: 0.75;
+}
+
+.card-completed {
+    background-color: #eaf6ee;
+}
