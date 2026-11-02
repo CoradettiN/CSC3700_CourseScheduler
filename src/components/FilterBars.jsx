@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react'
 function FilterBars({currentFilter,setCurrentFilter}) {
     const filterCategories = ["All Courses", "Completed", "Remaining"];
     return (

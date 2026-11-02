@@ -10,15 +10,15 @@ function AboutPage() {
                 </p>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Author(s)</div>
-                    <div className="col-8">Nicholas Coradetti, Jalen B</div>
+                    <div className="col-8">Nicholas Coradetti, Jalen Brown</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Date</div>
-                    <div className="col-8">Sunday, October 18, 2026</div>
+                    <div className="col-8">{new Date().toLocaleDateString('en-US', {dateSyle: 'full'})}</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Version</div>
-                    <div className="col-8">1.3.0</div>
+                    <div className="col-8">1.5.0</div>
                 </div>
             </div>
         </div>
