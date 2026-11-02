@@ -1,26 +1,22 @@
-import {useState, useEffect} from 'react'
-function FilterBars(filter) {
-    const [currentFilter, setCurrentFilter] = useState('allCourses');
+function FilterBars({currentFilter,setCurrentFilter,onSave,savedMessage}) {
+    const filterCategories = ["All Courses", "Completed Only", "Remaining"];
     return (
         <div className="d-flex flex-row align-items-center justify-content-between mb-3">
             <div className="btn-group" role="group" aria-label="Filter Card display">
-                <button className={currentFilter === 'allCourses' ?
-                    "btn btn-dark" : "btn btn-outline-dark"} type="button"
-                        onClick={() => setCurrentFilter('allCourses')}>
-                    All Courses
-                </button>
-                <button className={currentFilter === 'completedOnly' ?
-                    "btn btn-dark" : "btn btn-outline-dark"} type="button"
-                        onClick={() => setCurrentFilter('completedOnly')}>
-                    Completed Only
-                </button>
-                <button className={currentFilter === 'remaining' ?
-                    "btn btn-dark" : "btn btn-outline-dark"} type="button"
-                        onClick={() => setCurrentFilter('remaining')}>
-                    Remaining
-                </button>
+{/*Each filter button is now mapped into one button(Left the previous button layouts only because of paranoia)*/}
+                {filterCategories.map(category => (
+                    <button key={category}
+                            className={currentFilter === category ? "btn btn-dark" : "btn btn-outline-dark" }
+                         type="button"
+                            onClick={() => setCurrentFilter(category)}>
+                        {category}
+                    </button>
+                ))}
             </div>
-            <button className="btn btn-success" type="button">Save</button>
+            <div>
+                {savedMessage && <span className="text-success small me-3">{savedMessage}.</span>}
+                <button className="btn btn-success" type="button" onClick={onSave}>Save</button>
+            </div>
         </div>
     );
 }
