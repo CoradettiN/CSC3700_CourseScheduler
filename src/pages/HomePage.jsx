@@ -44,52 +44,10 @@ function HomePage() {
             credits: 3,
             description: 'OOP principles, inheritance, polymorphism, interfaces, design patterns.',
             prerequisites: [2]
-        },
-// Just added the rest of the courses
-        {
-            "id": 6,
-            "number": "CSC3510",
-            "title": "Software Testing",
-            "credits": 3,
-            "description": "Unit testing, integration testing, test-driven development, API testing with Postman.",
-            "prerequisites": [5]
-        },
-        {
-            "id": 7,
-            "number": "CSC3700",
-            "title": "Advanced Web Application Development",
-            "credits": 3,
-            "description": "React, Node/Express, MySQL, JWT authentication. Full-stack web development.",
-            "prerequisites": [3]
-        },
-        {
-            "id": 8,
-            "number": "CSC4450",
-            "title": "Programming Languages",
-            "credits": 3,
-            "description": "Language paradigms, memory management, C and C++ systems programming, Rust concepts.",
-            "prerequisites": [5]
-        },
-        {
-            "id": 9,
-            "number": "CSC4500",
-            "title": "Database Systems",
-            "credits": 3,
-            "description": "Relational databases, SQL, normalization, transactions, database design.",
-            "prerequisites": [2]
-        },
-        {
-            "id": 10,
-            "number": "CSC4990",
-            "title": "Capstone Project",
-            "credits": 3,
-            "description": "Semester-long team software project. Real client, full development lifecycle.",
-            "prerequisites": [6, 7]
         }
-];
+    ];
 
     const [completedIds, setCompletedIds] = useState([]);
-    const [currentFilter, setCurrentFilter] = useState('All Courses');
 
     function handleToggle(courseId) {
         if (completedIds.includes(courseId))
@@ -98,46 +56,14 @@ function HomePage() {
             setCompletedIds([...completedIds, courseId]);
     }
 
-    function getCourseStatus(course) {
-        if (completedIds.includes(course.id)) {
-            return "completed";
-        }
-        const unlockCourse = course.prerequisites.every(id => completedIds.includes(id));
-        return unlockCourse ? "available" : "locked";
-    }
-
-    const allCourseStatuses = {};
-    for (const course of courses) {
-        allCourseStatuses[course.id] = getCourseStatus(course);
-    }
-
-    const statusList = Object.values(allCourseStatuses);
-    const progressBar = {
-        total: courses.length,
-        completed: statusList.filter(status => status === "completed").length,
-        available: statusList.filter(status => status === "available").length,
-        locked: statusList.filter(status => status === "locked").length,
-    }
-
-    const showSelectCourses = courses.filter(course => {
-        if (currentFilter === 'Completed') {
-            return allCourseStatuses[course.id] === "completed";
-        }
-        if (currentFilter === 'Remaining') {
-            return allCourseStatuses[course.id] !== "completed";
-        }
-        return true;
-    })
-
     return (
         <div className="container mt-4 mb-5">
             <h3 className="mb-3">CS Developer Track</h3>
-            <ProgressSummary progress={progressBar} />
-            <FilterBars currentFilter={currentFilter} setCurrentFilter={setCurrentFilter} />
+            <ProgressSummary/>
+            <FilterBars/>
             <CourseList
-                courses={showSelectCourses}
-                allCourses={courses}
-                statuses={allCourseStatuses}
+                courses={courses}
+                completedIds={completedIds}
                 onToggle={handleToggle}
             />
         </div>

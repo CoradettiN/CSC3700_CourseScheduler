@@ -1,4 +1,4 @@
-function CourseCard({ course, status, onToggle, allCourses }) {
+function CourseCard({ course, isCompleted, onToggle, allCourses }) {
     // Loop through prerequisites, use those IDs to loop through allCourses to see what matches
     const prereqs = [];
     for (const preId of course.prerequisites) {
@@ -8,27 +8,9 @@ function CourseCard({ course, status, onToggle, allCourses }) {
         }
     }
 
-    const lockStatus = status === "locked";
-    const completedStatus = status === "completed";
-
-    let statusCard = "card h-100";
-    if (lockStatus) {
-        statusCard += 'border-secondary bg-light text-muted';
-    } else if (completedStatus) {
-        statusCard += 'border-success';
-    } else {
-        statusCard += 'border-primary';
-    }
-
-    const showStatus = {
-        available: <span className="badge bg-primary ">Available</span>,
-        completed: <span className="badge bg-primary">Completed</span>,
-        locked: <span className="badge bg-secondary">Locked</span>,
-    }
-
     return (
-        <div className={statusCard}>
-            <div className="card-header fw-bold">{course.number} {showStatus[status]}</div>
+        <div className="card h-100">
+            <div className="card-header fw-bold">{course.number}</div>
             <div className="card-body">
                 <h5 className="card-title">{course.title}</h5>
                 <p className="small text-muted mb-2">{course.credits} credits</p>
@@ -42,13 +24,10 @@ function CourseCard({ course, status, onToggle, allCourses }) {
                     <input
                         className="form-check-input"
                         type="checkbox"
-                        checked={completedStatus}
+                        checked={isCompleted}
                         onChange={() => onToggle(course.id)}
                     />
-{/*htmlFor now connects the label to the course id*/}
-                    <label className="form-check-label" htmlFor={`completed-${course.id}`}>
-                        {lockStatus ? 'Complete prerequisites first' : 'Completed'}
-                    </label>
+                    <label className="form-check-label">Completed</label>
                 </div>
             </div>
         </div>
