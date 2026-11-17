@@ -1,0 +1,69 @@
+@baseUrl = http://localhost:3000/api
+
+### Return 200 success
+GET {{baseUrl}}/courses
+
+### Return 200 success
+GET {{baseUrl}}/courses/1
+
+### Return 404 error
+GET {{baseUrl}}/courses/9999
+
+### Returns 201; with a new course added
+POST {{baseUrl}}/courses
+Content-Type: application/json
+
+{ "number": "CSC4600", "title": "Cloud Computing", "credits": 3,
+  "description": "Test course", "prerequisites": [5, 9] }
+
+
+### Returns 400 error; missing fields
+POST {{baseUrl}}/courses
+Content-Type: application/json
+
+{ "title": "Cloud Computing", "credits": 3,
+  "description": "Test course", "prerequisites": [5, 9] }
+
+
+
+### Returns 200; with updated course
+PUT {{baseUrl}}/courses/7
+Content-Type: application/json
+
+{ "number": "CSC3700", "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+
+### Returns 404 error; does not exist
+PUT {{baseUrl}}/courses/9999
+Content-Type: application/json
+
+{ "number": "CSC3700", "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+
+### Returns 400 error; missing fields
+PUT {{baseUrl}}/courses/7
+Content-Type: application/json
+
+{ "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+
+### Returns 200; course is deleted, can change id delete for real one; 11
+DELETE {{baseUrl}}/courses/55
+
+### Returns 200
+GET {{baseUrl}}/completions
+
+### Returns 200; array is saved
+PUT {{baseUrl}}/completions
+Content-Type: application/json
+
+[1, 3, 2]
+
+### Returns 400; array is not saved, missing fields
+PUT {{baseUrl}}/completions
+Content-Type: application/json
+
+[10]
