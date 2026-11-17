@@ -20,7 +20,7 @@ function HomePage() {
     }, [savedCompletions]);
 
     const [savedMessage, setSavedMessage] = useState('');
-    const [saveFailed, setSaveFailed] = useState(false);   // NEW
+    const [saveFailed, setSaveFailed] = useState(false);
     const [currentFilter, setCurrentFilter] = useState('All Courses');
 
     function handleToggle(courseId) {
@@ -108,7 +108,7 @@ function HomePage() {
             <ProgressSummary progress={progressBar} />
             <FilterBars currentFilter={currentFilter} setCurrentFilter={setCurrentFilter}
                         onSave={handleSave} savedMessage={savedMessage}
-                        saveFailed={saveFailed} />   {/* CHANGED: new prop */}
+                        saveFailed={saveFailed} />
             <CourseList
                 courses={showSelectCourses}
                 allCourses={courses}
