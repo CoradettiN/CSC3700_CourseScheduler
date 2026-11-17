@@ -14,11 +14,11 @@ function AboutPage() {
                 </div>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Date</div>
-                    <div className="col-8">{new Date().toLocaleDateString('en-us', {dataStyle: 'full'})}</div>
+                    <div className="col-8">{new Date().toLocaleDateString('en-us', {dateStyle: 'full'})}</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col-4 fw-bold">Version</div>
-                    <div className="col-8">1.5.0</div>
+                    <div className="col-8">2.1.0</div>
                 </div>
             </div>
         </div>

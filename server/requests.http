@@ -1,0 +1,66 @@
+@baseUrl = http://localhost:3000/api
+
+### 1. GET all courses - 200
+GET {{baseUrl}}/courses
+
+### 2. GET one course - 200
+GET {{baseUrl}}/courses/1
+
+### 3. GET a course that does not exist - 404
+GET {{baseUrl}}/courses/9999
+
+### 4. POST a new course - 201 -- ID:11 on fresh database
+POST {{baseUrl}}/courses
+Content-Type: application/json
+
+{ "number": "CSC4600", "title": "Cloud Computing", "credits": 3,
+  "description": "Test course", "prerequisites": [5, 9] }
+
+### 5. POST missing number - 400
+POST {{baseUrl}}/courses
+Content-Type: application/json
+
+{ "title": "Cloud Computing", "credits": 3,
+  "description": "Test course", "prerequisites": [5, 9] }
+
+### 6. PUT update course 7 - 200
+PUT {{baseUrl}}/courses/7
+Content-Type: application/json
+
+{ "number": "CSC3700", "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+### 7. PUT a course that does not exist - 404
+PUT {{baseUrl}}/courses/9999
+Content-Type: application/json
+
+{ "number": "CSC3700", "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+### 8. PUT missing number - 400
+PUT {{baseUrl}}/courses/7
+Content-Type: application/json
+
+{ "title": "Advanced Web Application Development", "credits": 3,
+  "description": "React, Node/Express, MySQL, JWT authentication.", "prerequisites": [3, 5] }
+
+### 9. DELETE the course created in request 4 - 200
+DELETE {{baseUrl}}/courses/11
+
+### 10. DELETE a course that does not exist - 404
+DELETE {{baseUrl}}/courses/9999
+
+### 11. GET completions - 200
+GET {{baseUrl}}/completions
+
+### 12. PUT valid completions - 200
+PUT {{baseUrl}}/completions
+Content-Type: application/json
+
+[1, 3, 2]
+
+### 13. PUT completions that break a prerequisite - 400, nothing saved
+PUT {{baseUrl}}/completions
+Content-Type: application/json
+
+[10]

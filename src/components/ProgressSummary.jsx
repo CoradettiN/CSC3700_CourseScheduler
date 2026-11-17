@@ -6,7 +6,7 @@ function ProgressSummary({progress}) {
         <div className="card mb-3">
             <div className="card-body py-2">
                 <div className="d-flex justify-content-sm-start align-items-baseline gap-2">
-                    <span className="fs-5 fw-bold text-success">{completed}</span> of 10 courses completed
+                    <span className="fs-5 fw-bold text-success">{completed}</span> of {total} courses completed
                     <span className="fs-5 fw-bold text-primary">{available}</span> available
                     <span className="fs-5 fw-bold ">{locked}</span> locked
                 </div>

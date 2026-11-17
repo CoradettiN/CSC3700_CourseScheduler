@@ -48,7 +48,6 @@ function CourseCard({ course, status, onToggle, allCourses }) {
                         disabled={lockStatus}
                         onChange={() => onToggle(course.id)}
                     />
-{/*htmlFor now connects the label to the course id*/}
                     <label className="form-check-label" htmlFor={`completed-${course.id}`}>
                         {lockStatus ? 'Complete prerequisites first' : 'Completed'}
                     </label>
